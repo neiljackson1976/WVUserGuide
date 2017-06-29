@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "WestgateView", "WestgateView\WestgateView.phpproj", "{C7DC323B-38AA-4B37-944F-1DD573630F2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E5A121C5-AFCE-45A4-A098-498C41EC8E7F}"
+	ProjectSection(SolutionItems) = preProject
+		WestgateView\Data\WestgateView.db = WestgateView\Data\WestgateView.db
+	EndProjectSection
+EndProject
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "ElementHomesUserGuideManager", "ElementHomesUserGuideManager\ElementHomesUserGuideManager.phpproj", "{A9EE4C67-ABE5-4446-9169-729547577B12}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7DC323B-38AA-4B37-944F-1DD573630F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7DC323B-38AA-4B37-944F-1DD573630F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9EE4C67-ABE5-4446-9169-729547577B12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9EE4C67-ABE5-4446-9169-729547577B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C7DC323B-38AA-4B37-944F-1DD573630F2F} = {E5A121C5-AFCE-45A4-A098-498C41EC8E7F}
+		{A9EE4C67-ABE5-4446-9169-729547577B12} = {E5A121C5-AFCE-45A4-A098-498C41EC8E7F}
+	EndGlobalSection
+EndGlobal

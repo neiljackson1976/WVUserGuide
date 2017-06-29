@@ -1,0 +1,31 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>ElementHomesUserGuideManager</Name>
+    <ProjectGuid>a9ee4c67-abe5-4446-9169-729547577b12</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
+    <AssemblyName>ElementHomesUserGuideManager</AssemblyName>
+    <SpecificPageValue>IndexRooms.php</SpecificPageValue>
+    <StartAction>SpecificPage</StartAction>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <IncludeDebugInformation>false</IncludeDebugInformation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="el_InitialiseDatabase.php" />
+    <Compile Include="index.php" />
+    <Compile Include="el_SiteDetails.php" />
+    <Compile Include="el_SQLiteInteraction.php" />
+    <Compile Include="AddRooms.php" />
+    <Compile Include="IndexRooms.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AddRooms.html" />
+  </ItemGroup>
+</Project>
