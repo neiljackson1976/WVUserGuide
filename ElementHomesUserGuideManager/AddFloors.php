@@ -1,7 +1,7 @@
 
 <html>
     <head>
-        <title>Add Rooms</title>
+        <title>Add Floors</title>
     </head>
 <body>
 
@@ -10,26 +10,26 @@
     include_once("el_SQLiteInteraction.php");
 
     // define variables and set to empty values
-    $roomNameErr = "";
-    $roomName = "";
-    $roomID = "";
+    $floorNameErr = "";
+    $floorName = "";
+    $floorID = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Submit'])) {
-        if (empty($_POST["roomName"])) {
-            $roomNameErr = "Room Name is required";
+        if (empty($_POST["floorName"])) {
+            $floorNameErr = "Floor Name is required";
         } 
         else {
-            $roomName = test_input($_POST["roomName"]);
-            $ret=insertRoom($roomName);
+            $floorName = test_input($_POST["floorName"]);
+            $ret=insertFloor($floorName);
             if($ret["success"])
             {
-                $roomID = $ret["rowid"];
+                $floorID = $ret["rowid"];
 
             }
             else
             {
-                $roomNameErr="Unable to create room./n".$ret["error"];
-                $roomID="";
+                $floorNameErr="Unable to create floor./n".$ret["error"];
+                $floorID="";
             }
         }
 
@@ -42,9 +42,9 @@
         return $data;
     }
 
-    function insertRoom($name)
+    function insertFloor($name)
     {
-        $sql = "Insert into rooms(RoomName) values(".$name.");";
+        $sql = "Insert into floors(floorName) values(".$name.");";
         $result=$wvdb->exec($sql);
         var_dump($result);
 		if(!$result){
