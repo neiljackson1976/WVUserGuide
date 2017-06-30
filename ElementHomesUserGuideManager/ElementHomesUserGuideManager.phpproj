@@ -8,7 +8,7 @@
     </RootNamespace>
     <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
     <AssemblyName>ElementHomesUserGuideManager</AssemblyName>
-    <SpecificPageValue>IndexRooms.php</SpecificPageValue>
+    <SpecificPageValue>IndexFloors.php</SpecificPageValue>
     <StartAction>SpecificPage</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -19,13 +19,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AddFloors.php" />
-    <Compile Include="el_InitialiseDatabase.php" />
+    <Compile Include="Configure.php" />
     <Compile Include="index.php" />
-    <Compile Include="el_SiteDetails.php" />
-    <Compile Include="el_SQLiteInteraction.php" />
     <Compile Include="AddRooms.php" />
     <Compile Include="IndexFloors.php" />
     <Compile Include="IndexRooms.php" />
+    <Compile Include="Initialise.php" />
+    <Compile Include="SiteDetails.php" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddFloors.html" />

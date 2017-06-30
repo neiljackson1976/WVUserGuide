@@ -2,9 +2,9 @@
 //including the database connection file
 include_once("Configure.php");
 
-//fetching data in descending order (lastest entry first)
-//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = $wvdb->query("SELECT * FROM Rooms ORDER BY RoomID"); // using mysqli_query instead
+global $wvdb;
+$result = $wvdb->query('SELECT * FROM Rooms ORDER BY RoomID;');
+$roomid = $_GET['id'];
 ?>
 
 <html>
@@ -21,13 +21,22 @@ $result = $wvdb->query("SELECT * FROM Rooms ORDER BY RoomID"); // using mysqli_q
         <tr bgcolor='#CCCCCC'>
             <td>Room ID</td>
             <td>Room Name</td>
+            <td>Floor Name</td>
+            <td>Location Description</td>
+
         </tr>
         <?php
-        while($res = $result->fetchArray(SQLITE_ASSOC)) {
-            echo "<tr>";
+        while($res = $result->fetchArray(SQLITE3_ASSOC)) {
+            if($roomid==$res['RoomID']){
+                echo "<tr class='highlight'>";
+            }
+            else{echo "<tr>";}
             echo "<td>".$res['RoomID']."</td>";
             echo "<td>".$res['RoomName']."</td>";
-            echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"deleteroom.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+            echo "<td>".$res['FloorName']."</td>";
+            echo "<td>".$res['LocationDescription']."</td>";
+
+            echo "<td><a href=\"edit.php?id=$res[RoomID]\">Edit</a> | <a href=\"deleteroom.php?id=$res[RoomID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
         }
         ?>
     </table>

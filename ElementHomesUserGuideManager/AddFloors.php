@@ -17,14 +17,16 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Submit'])) {
         if (empty($_POST["floorName"])) {
             $floorNameErr = "Floor Name is required";
-        } 
+        }
         else {
             $floorName = test_input($_POST["floorName"]);
             $ret=insertFloor($floorName);
             if($ret["success"])
             {
+                $URL = "IndexFloors.php";
                 $floorID = $ret["rowid"];
-
+                header("Location: $URL");
+                die();
             }
             else
             {
@@ -32,7 +34,7 @@
                 $floorID="";
             }
         }
-
+        echo "Floor add failed: ".$floorNameErr;
     }
 
     function test_input($data) {
@@ -44,19 +46,22 @@
 
     function insertFloor($name)
     {
-        $sql = "Insert into floors(floorName) values(".$name.");";
-        $result=$wvdb->exec($sql);
-        var_dump($result);
-		if(!$result){
+        global $wvdb;
+        $sql = "Insert into floors(floorName) values(:name);";
+        $stmt=$wvdb->prepare($sql);
+        $stmt->bindValue(':name',$name,SQLITE3_TEXT);
+
+
+        if(!$stmt->execute()){
             $retval['success'] = false;
             $retval['error'] = $wvdb->lastErrorMsg;
         }
         else
         {
             $retval['success'] = true;
-            $retval['rowid'] = $wvdb->lastInsertRowID;
+            $retval['rowid'] = $wvdb->lastInsertRowID();
         }
-        return $retval;  
+        return $retval;
     }
 
     ?>

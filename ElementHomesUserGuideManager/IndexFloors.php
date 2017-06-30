@@ -2,9 +2,9 @@
 //including the database connection file
 include_once("Configure.php");
 
-//fetching data in descending order (lastest entry first)
-//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
-$result = $wvdb->query("SELECT * FROM Floors ORDER BY FloorID"); // using mysqli_query instead
+global $wvdb;
+$result = $wvdb->query("SELECT * FROM Floors ORDER BY FloorID"); 
+
 ?>
 
 <html>
@@ -23,11 +23,12 @@ $result = $wvdb->query("SELECT * FROM Floors ORDER BY FloorID"); // using mysqli
             <td>Floor Name</td>
         </tr>
         <?php
-        while($res = $result->fetchArray(SQLITE_ASSOC)) {
+        global $result;
+        while($res = $result->fetchArray(SQLITE3_ASSOC)) {
             echo "<tr>";
             echo "<td>".$res['FloorID']."</td>";
             echo "<td>".$res['FloorName']."</td>";
-            echo "<td><a href=\"editfloor.php?id=$res[id]\">Edit</a> | <a href=\"deletefloor.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+            echo "<td><a href=\"editfloor.php?id=$res[FloorID]\">Edit</a> | <a href=\"deletefloor.php?id=$res[FloorID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
         }
         ?>
     </table>

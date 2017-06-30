@@ -3,7 +3,7 @@ namespace elementhomes;
 use SQLite3;
 
 $projectname = "Westgate View";
-$wvdb = new InitialiseDatabase();
+$wvdb = new db();
 
 $databasescript = "../westgateview/data/westgateviewscript.sql";
 

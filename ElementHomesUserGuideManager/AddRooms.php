@@ -24,14 +24,18 @@
             if($ret["success"])
             {
                 $roomID = $ret["rowid"];
-
+                header('Location: IndexRooms.php');
+                die();
             }
             else
             {
                 $roomNameErr="Unable to create room./n".$ret["error"];
                 $roomID="";
+
             }
         }
+
+        echo "Room add failed: ".$roomNameErr;
 
     }
 
@@ -48,17 +52,16 @@
         $sql = "Insert into rooms(RoomName) values(:name);";
         $stmt=$wvdb->prepare($sql);
         $stmt->bindValue(':name',$name,SQLITE3_TEXT);
-        $stmt->execute();
 
-        var_dump($stmt);
-		if(!$stmt){
+
+        if(!$stmt->execute()){
             $retval['success'] = false;
             $retval['error'] = $wvdb->lastErrorMsg;
         }
         else
         {
             $retval['success'] = true;
-            $retval['rowid'] = $wvdb->lastInsertRowID;
+            $retval['rowid'] = $wvdb->lastInsertRowID();
         }
         return $retval;
     }
