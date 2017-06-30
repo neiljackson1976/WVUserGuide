@@ -17,7 +17,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Submit'])) {
         if (empty($_POST["roomName"])) {
             $roomNameErr = "Room Name is required";
-        } 
+        }
         else {
             $roomName = test_input($_POST["roomName"]);
             $ret=insertRoom($roomName);
@@ -44,19 +44,23 @@
 
     function insertRoom($name)
     {
-        $sql = "Insert into rooms(RoomName) values(".$name.");";
-        $result=$wvdb->exec($sql);
-        var_dump($result);
-		if(!$result){
-            retval['success'] = 'false';
-            retval['error'] = $wvdb->lastErrorMsg;
+        global $wvdb;
+        $sql = "Insert into rooms(RoomName) values(:name);";
+        $stmt=$wvdb->prepare($sql);
+        $stmt->bindValue(':name',$name,SQLITE3_TEXT);
+        $stmt->execute();
+
+        var_dump($stmt);
+		if(!$stmt){
+            $retval['success'] = false;
+            $retval['error'] = $wvdb->lastErrorMsg;
         }
         else
         {
-            retval['success'] = 'true';
-            retval['rowid'] = $wvdb->lastInsertRowID;
+            $retval['success'] = true;
+            $retval['rowid'] = $wvdb->lastInsertRowID;
         }
-        return $retval;  
+        return $retval;
     }
 
     ?>
