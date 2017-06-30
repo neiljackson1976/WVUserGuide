@@ -116,6 +116,7 @@ EOF;
         $table = "Floors";
         $sql = "CREATE TABLE IF NOT EXISTS Floors(FloorID integer PRIMARY KEY, FloorName text, FloorLevel integer);";
 		  $sql .= "CREATE UNIQUE INDEX idx_FloorName ON Floors(FloorName);";
+        $sql .= "CREATE UNIQUE INDEX idx_FloorLevel ON Floors(FloorLevel);";
         $this->CreateTable($table,$sql);
     }
 
