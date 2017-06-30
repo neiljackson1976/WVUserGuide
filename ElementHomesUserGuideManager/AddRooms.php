@@ -7,7 +7,7 @@
 
     <?php
 
-    include_once("el_SQLiteInteraction.php");
+    include_once("Configure.php");
 
     // define variables and set to empty values
     $roomNameErr = "";

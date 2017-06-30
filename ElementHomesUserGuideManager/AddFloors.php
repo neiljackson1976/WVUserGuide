@@ -7,7 +7,7 @@
 
     <?php
 
-    include_once("el_SQLiteInteraction.php");
+    include_once("Configure.php");
 
     // define variables and set to empty values
     $floorNameErr = "";
@@ -48,13 +48,13 @@
         $result=$wvdb->exec($sql);
         var_dump($result);
 		if(!$result){
-            retval['success'] = 'false';
-            retval['error'] = $wvdb->lastErrorMsg;
+            $retval['success'] = false;
+            $retval['error'] = $wvdb->lastErrorMsg;
         }
         else
         {
-            retval['success'] = 'true';
-            retval['rowid'] = $wvdb->lastInsertRowID;
+            $retval['success'] = true;
+            $retval['rowid'] = $wvdb->lastInsertRowID;
         }
         return $retval;  
     }

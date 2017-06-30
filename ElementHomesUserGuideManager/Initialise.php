@@ -2,6 +2,8 @@
 namespace elementhomes;
 use SQLite3;
 
+include_once("Configure.php");
+
 $init = new InitialiseDatabase();
 
 
