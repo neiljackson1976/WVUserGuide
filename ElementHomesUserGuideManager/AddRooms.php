@@ -24,7 +24,7 @@
             if($ret["success"])
             {
                 $roomID = $ret["rowid"];
-                header('Location: IndexRooms.php');
+                header('Location: IndexRooms.php?id='.$roomid);
                 die();
             }
             else

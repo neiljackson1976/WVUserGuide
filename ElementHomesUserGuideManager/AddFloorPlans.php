@@ -8,8 +8,9 @@
     <?php
 $sql = "CREATE TABLE IF NOT EXISTS FloorPlans(FloorPlanID integer PRIMARY KEY, FloorPlanName text, FloorPlanFile text);";
 
-        
+
     include_once("Configure.php");
+    include_once("UploadFiles.php");
 
     // define variables and set to empty values
     $floorPlanNameErr = "";
@@ -17,27 +18,31 @@ $sql = "CREATE TABLE IF NOT EXISTS FloorPlans(FloorPlanID integer PRIMARY KEY, F
     $floorPlanID = "";
 	$floorPlanFile = "";
 
+
+
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Submit'])) {
-        if (empty($_POST["floorName"])) {
-            $floorNameErr = "Floor Name is required";
+        if (empty($_POST["floorPlanName"])) {
+            $floorPlanNameErr = "Floor Plan Name is required";
         }
         else {
-            $floorName = test_input($_POST["floorName"]);
-            $ret=insertFloor($floorName);
+            $floorPlanName = test_input($_POST["floorPlanName"]);
+            $floorPlanFile = $_FILES["floorPlanFile"];
+            $ret=insertFloorPlan($floorPlanName, $floorPlanFile);
             if($ret["success"])
             {
-                $URL = "IndexFloors.php";
-                $floorID = $ret["rowid"];
+                $URL = "IndexFloorPlans.php";
+                $floorPlanID = $ret["rowid"];
+                $URL.="?id=".$floorPlanID;
                 header("Location: $URL");
                 die();
             }
             else
             {
-                $floorNameErr="Unable to create floor./n".$ret["error"];
-                $floorID="";
+                $floorPlanNameErr="Unable to create floor./n".$ret["error"];
+                $floorPlanID="";
             }
         }
-        echo "Floor add failed: ".$floorNameErr;
+        echo "Floorplan add failed: ".$floorPlanNameErr;
     }
 
     function test_input($data) {
@@ -51,12 +56,15 @@ $sql = "CREATE TABLE IF NOT EXISTS FloorPlans(FloorPlanID integer PRIMARY KEY, F
     {
         global $wvdb;
 			global $__floorplan_folder;
+            $filefilters = array("png","gif","jpg","jpeg");
 			alert("need to copy to floorplan folder");
 			//if file already in floorplan folder, use filename;
+            if(file_exists($_FILES["fileToUpload"]))
 
 			//otherwise copy file to folder and use that filename -- ensuring the address is relative to the site, not the site builder;
-			
-        $sql = "Insert into floorPlans(floorPlanName,floorPlanFile) values(:name,:file);";
+            $uploadsuccess = UploadFiles($__floorplan_folder,basename($_FILES["fileToUpload"]["name"]),$filefilters,50000);
+
+            $sql = "Insert into floorPlans(floorPlanName,floorPlanFile) values(:name,:file);";
         $stmt=$wvdb->prepare($sql);
         $stmt->bindValue(':name',$name,SQLITE3_TEXT);
 		  $stmt->bindValue(':file',$file,SQLITE3_INTEGER);
@@ -69,8 +77,8 @@ $sql = "CREATE TABLE IF NOT EXISTS FloorPlans(FloorPlanID integer PRIMARY KEY, F
 				if($wvdb->lastErrorCode==-1){
 				$retval['error'] = "A floor with this Floor Level ID already exists.  Amend that one first.";}
 				else{
-            $retval['error'] = $wvdb->lastErrorMsg;		
-				}	
+            $retval['error'] = $wvdb->lastErrorMsg;
+				}
         }
         else
         {

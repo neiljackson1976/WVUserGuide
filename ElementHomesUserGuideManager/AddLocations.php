@@ -1,8 +1,8 @@
 
 <html>
-    <head>
-        <title>Add Floors</title>
-    </head>
+<head>
+    <title>Add Locations</title>
+</head>
 <body>
 
     <?php
@@ -27,7 +27,6 @@
             {
                 $URL = "IndexFloors.php";
                 $floorID = $ret["rowid"];
-                $URL.="?id=".$floorID;
                 header("Location: $URL");
                 die();
             }
@@ -53,18 +52,19 @@
         $sql = "Insert into floors(floorName,floorLevel) values(:name,:level);";
         $stmt=$wvdb->prepare($sql);
         $stmt->bindValue(':name',$name,SQLITE3_TEXT);
-		  $stmt->bindValue(':level',$level,SQLITE3_INTEGER);
+        $stmt->bindValue(':level',$level,SQLITE3_INTEGER);
 
 
 
         if(!$stmt->execute()){
             $retval['success'] = false;
-				//check the error code for unique index violation.  Check whether last error message is function or propertgy.
-				if($wvdb->lastErrorCode==-1){
-				$retval['error'] = "A floor with this Floor Level ID already exists.  Amend that one first.";}
-				else{
-            $retval['error'] = $wvdb->lastErrorMsg;		
-				}	
+            //check the error code for unique index violation.  Check whether last error message is function or propertgy.
+            if($wvdb->lastErrorCode==-1){
+				$retval['error'] = "A floor with this Floor Level ID already exists.  Amend that one first.";
+            }
+            else{
+                $retval['error'] = $wvdb->lastErrorMsg;
+            }
         }
         else
         {
@@ -76,6 +76,6 @@
 
     ?>
 
-   
+
 </body>
 </html>
