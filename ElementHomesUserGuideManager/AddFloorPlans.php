@@ -6,7 +6,6 @@
 <body>
 
     <?php
-$sql = "CREATE TABLE IF NOT EXISTS FloorPlans(FloorPlanID integer PRIMARY KEY, FloorPlanName text, FloorPlanFile text);";
 
 
     include_once("Configure.php");
@@ -55,35 +54,39 @@ $sql = "CREATE TABLE IF NOT EXISTS FloorPlans(FloorPlanID integer PRIMARY KEY, F
     function insertFloorPlan($name,$file)
     {
         global $wvdb;
-			global $__floorplan_folder;
-            $filefilters = array("png","gif","jpg","jpeg");
-			alert("need to copy to floorplan folder");
-			//if file already in floorplan folder, use filename;
-            if(file_exists($_FILES["fileToUpload"]))
+        global $__floorplan_folder;
+        $filefilters = array("png","gif","jpg","jpeg");
+		$targetfile = $__floorplan_folder."/".$name.".".pathinfo($file["name"],PATHINFO_EXTENSION);
+        //if file already in floorplan folder, use filename;
 
-			//otherwise copy file to folder and use that filename -- ensuring the address is relative to the site, not the site builder;
-            $uploadsuccess = UploadFiles($__floorplan_folder,basename($_FILES["fileToUpload"]["name"]),$filefilters,50000);
+        while(file_exists($targetfile)){
+            $targetfile=$__floorplan_folder."/".pathinfo($targetfile,PATHINFO_FILENAME)."_.".pathinfo($targetfile,PATHINFO_EXTENSION);
 
-            $sql = "Insert into floorPlans(floorPlanName,floorPlanFile) values(:name,:file);";
-        $stmt=$wvdb->prepare($sql);
-        $stmt->bindValue(':name',$name,SQLITE3_TEXT);
-		  $stmt->bindValue(':file',$file,SQLITE3_INTEGER);
-
-
-
-        if(!$stmt->execute()){
-            $retval['success'] = false;
-				//check the error code for unique index violation.  Check whether last error message is function or propertgy.
-				if($wvdb->lastErrorCode==-1){
-				$retval['error'] = "A floor with this Floor Level ID already exists.  Amend that one first.";}
-				else{
-            $retval['error'] = $wvdb->lastErrorMsg;
-				}
         }
-        else
-        {
-            $retval['success'] = true;
-            $retval['rowid'] = $wvdb->lastInsertRowID();
+
+            //otherwise copy file to folder and use that filename -- ensuring the address is relative to the site, not the site builder;
+        $uploadsuccess = UploadFiles("floorPlanFile",$targetfile,$filefilters,50000);
+
+        if($uploadsuccess->success){
+            $sql = "Insert into floorPlans(floorPlanName,floorPlanFile) values(:name,:file);";
+            $stmt=$wvdb->prepare($sql);
+            $stmt->bindValue(':name',$name,SQLITE3_TEXT);
+		    $stmt->bindValue(':file',$targetfile,SQLITE3_TEXT);
+
+            if(!$stmt->execute()){
+                $retval['success'] = false;
+			    //check the error code for unique index violation.  Check whether last error message is function or propertgy.
+			    if($wvdb->lastErrorCode==-1){
+				    $retval['error'] = "A floor with this Floor Level ID already exists.  Amend that one first.";}
+			    else{
+                    $retval['error'] = $wvdb->lastErrorMsg;
+				    }
+                }
+            else
+            {
+                $retval['success'] = true;
+                $retval['rowid'] = $wvdb->lastInsertRowID();
+            }
         }
         return $retval;
     }

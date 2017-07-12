@@ -7,10 +7,10 @@ $wvdb = new db();
 
 $databasescript = "../westgateview/data/westgateviewscript.sql";
 $__data_folder = "../westgateview/data";
-$__floorplan_folder = $__datafolder."/floorplans";
-$__documentation_folder = $__datafolder."/documentation";
+$__floorplan_folder = $__data_folder."/floorplans";
+$__documentation_folder = $__data_folder."/documentation";
 $__site_images_folder = "../westgateview/images";
-$__user_images_folder = $__datafolder."/userimages";
+$__user_images_folder = $__data_folder."/userimages";
 
 
 class db extends SQLite3{

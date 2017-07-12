@@ -4,13 +4,13 @@ include_once("Configure.php");
 
 global $wvdb;
 $lastid = $_GET['id'];
-$result = $wvdb->query("SELECT * FROM Floors ORDER BY FloorLevel");
+$result = $wvdb->query("SELECT * FROM FloorPlans ORDER BY FloorPlanID");
 
 ?>
 
 <html>
 <head>
-    <title>Floors</title>
+    <title>Floor Plans</title>
 </head>
 
 <body>
@@ -38,7 +38,8 @@ $result = $wvdb->query("SELECT * FROM Floors ORDER BY FloorLevel");
             echo "<td>".$res['FloorPlanName']."</td>";
             echo "<td>".$res['FloorPlanFile']."</td>";
             echo "<td><a href=\"editfloorplan.php?id=$res[FloorPlanID]\">Edit</a> | <a href=\"deletefloorplan.php?id=$res[FloorPlanID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
-        }
+            echo "</tr>";
+            }
         ?>
     </table>
 </body>
