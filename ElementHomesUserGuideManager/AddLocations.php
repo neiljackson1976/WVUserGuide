@@ -10,33 +10,35 @@
     include_once("Configure.php");
 
     // define variables and set to empty values
-    $floorNameErr = "";
-    $floorName = "";
-    $floorLevel = "";
-    $floorID = "";
+    $locationDescriptionErr = "";
+    $locationDescription = "";
+    $locationX = "";
+    $locationY = "";
+    $locationID = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Submit'])) {
-        if (empty($_POST["floorName"])) {
-            $floorNameErr = "Floor Name is required";
+        if (empty($_POST["locationDescription"])) {
+            $floorNameErr = "Location Description is required";
         }
         else {
-            $floorName = test_input($_POST["floorName"]);
-            $floorLevel = test_input($_POST["floorLevel"]);
-            $ret=insertFloor($floorName,$floorLevel);
+            $locationDescription = test_input($_POST["locationDescription"]);
+            $locationX = test_input($_POST["locationX"]);
+            $ret=insertLocation($locationDescription,$locationX,locationY);
             if($ret["success"])
             {
-                $URL = "IndexFloors.php";
-                $floorID = $ret["rowid"];
+                $URL = "IndexLocations.php";
+                $locationID = $ret["rowid"];
+					$URL.="?ID=".$locationID;
                 header("Location: $URL");
                 die();
             }
             else
             {
-                $floorNameErr="Unable to create floor./n".$ret["error"];
-                $floorID="";
+                $locationDescriptionErr="Unable to create location.\n".$ret["error"];
+                $locationID="";
             }
         }
-        echo "Floor add failed: ".$floorNameErr;
+        echo "Location add failed: ".$locationDescriptionErr;
     }
 
     function test_input($data) {
@@ -46,25 +48,21 @@
         return $data;
     }
 
-    function insertFloor($name,$level)
+    function insertLocation($description,$X,$Y)
     {
         global $wvdb;
-        $sql = "Insert into floors(floorName,floorLevel) values(:name,:level);";
+        $sql = "Insert into locations(locationDescription,locationX,locationY) values(:description,:x,:y);";
         $stmt=$wvdb->prepare($sql);
-        $stmt->bindValue(':name',$name,SQLITE3_TEXT);
-        $stmt->bindValue(':level',$level,SQLITE3_INTEGER);
+        $stmt->bindValue(':description',$description,SQLITE3_TEXT);
+        $stmt->bindValue(':x',$X,SQLITE3_INTEGER);
+        $stmt->bindValue(':y',$Y,SQLITE3_INTEGER);
 
 
 
         if(!$stmt->execute()){
             $retval['success'] = false;
             //check the error code for unique index violation.  Check whether last error message is function or propertgy.
-            if($wvdb->lastErrorCode==-1){
-				$retval['error'] = "A floor with this Floor Level ID already exists.  Amend that one first.";
-            }
-            else{
-                $retval['error'] = $wvdb->lastErrorMsg;
-            }
+            $retval['error'] = $wvdb->lastErrorMsg;
         }
         else
         {
