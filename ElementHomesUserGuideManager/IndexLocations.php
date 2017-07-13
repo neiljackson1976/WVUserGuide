@@ -10,6 +10,24 @@ $locationid = $_GET['ID'];
 <html>
 <head>
     <title>Locations</title>
+    <style>
+        .containerdiv {
+            position: relative;
+            width: 100%;
+            height: 156px;
+            text-align: center;
+        }
+
+
+        .absimg {
+            position: absolute;
+        }
+
+        .imgdiv {
+            display: inline-block;
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,7 +55,7 @@ $locationid = $_GET['ID'];
             else{echo "<tr>";}
             echo "<td>".$res['LocationID']."</td>";
             echo "<td>".$res['LocationDescription']."</td>";
-            echo "<td>".$res['FloorPlanFile']."</td>";
+            echo "<td>";
             echo "<div class='containerdiv' align='center'>";
 
             echo "<div class='imgdiv'>";
@@ -53,7 +71,7 @@ $locationid = $_GET['ID'];
 
             echo "</div>";
             echo "</div>";
-
+            echo "</td>";
             echo "<td>".$res['LocationX']."</td>";
             echo "<td>".$res['LocationY']."</td>";
 

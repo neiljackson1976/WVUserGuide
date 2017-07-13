@@ -70,7 +70,7 @@
         if($uploadsuccess->success){
             //copy file to local folder
             global $__builder_floorplan_folder;
-            copy($targetfile,$__builder_floorplan_folder);
+            copy($targetfile,$__builder_floorplan_folder."/".pathinfo($targetfile,PATHINFO_BASENAME));
 
             $sql = "Insert into floorPlans(floorPlanName,floorPlanFile) values(:name,:file);";
             $stmt=$wvdb->prepare($sql);

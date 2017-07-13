@@ -18,14 +18,22 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddComponent.php" />
+    <Compile Include="AddComponentGroup.php" />
+    <Compile Include="AddDocumentationItem.php" />
     <Compile Include="AddFloorPlans.php" />
     <Compile Include="AddFloors.php" />
+    <Compile Include="AddImage.php" />
     <Compile Include="AddLocations.php" />
     <Compile Include="Configure.php" />
     <Compile Include="index.php" />
     <Compile Include="AddRooms.php" />
+    <Compile Include="IndexComponentGroups.php" />
+    <Compile Include="IndexComponents.php" />
+    <Compile Include="IndexDocumentationItems.php" />
     <Compile Include="IndexFloorPlans.php" />
     <Compile Include="IndexFloors.php" />
+    <Compile Include="IndexImages.php" />
     <Compile Include="IndexLocations.php" />
     <Compile Include="IndexRooms.php" />
     <Compile Include="Initialise.php" />

@@ -27,6 +27,7 @@ $result = $wvdb->query("SELECT * FROM FloorPlans ORDER BY FloorPlanID");
         </tr>
         <?php
         global $result;
+        global $__builder_floorplan_folder;
         while($res = $result->fetchArray(SQLITE3_ASSOC)) {
             if($res['FloorPlanID']==$lastid){
                 echo "<tr class='highlighted'>";
@@ -36,7 +37,10 @@ $result = $wvdb->query("SELECT * FROM FloorPlans ORDER BY FloorPlanID");
             }
             echo "<td>".$res['FloorPlanID']."</td>";
             echo "<td>".$res['FloorPlanName']."</td>";
-            echo "<td>".$res['FloorPlanFile']."</td>";
+            echo "<td>";
+            $floorplanimage = $__builder_floorplan_folder."/".pathinfo($res['FloorPlanFile'],PATHINFO_BASENAME);
+            echo "<img src='".$floorplanimage."' border='0' />";
+            echo "</td>";
             echo "<td><a href=\"editfloorplan.php?id=$res[FloorPlanID]\">Edit</a> | <a href=\"deletefloorplan.php?id=$res[FloorPlanID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
             echo "</tr>";
             }
