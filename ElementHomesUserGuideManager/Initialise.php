@@ -155,7 +155,7 @@ EOF;
 
     private function CreateLocations(){
         $table = "Locations";
-        $sql = "CREATE TABLE IF NOT EXISTS Locations(LocationID integer PRIMARY KEY, LocationDescription text,FloorPlanID integer, LocationX integer, LocationY integer);";
+        $sql = "CREATE TABLE IF NOT EXISTS Locations(LocationID integer PRIMARY KEY, LocationDescription text,FloorPlanID integer, LocationX float, LocationY float);";
 		  $sql .= "CREATE UNIQUE INDEX idx_LocationDescription ON Locations(LocationDescription);";
         $this->CreateTable($table,$sql);
 
