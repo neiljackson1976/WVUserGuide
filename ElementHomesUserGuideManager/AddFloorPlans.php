@@ -54,13 +54,13 @@
     function insertFloorPlan($name,$file)
     {
         global $wvdb;
-        global $__floorplan_folder;
+        global $__client_floorplan_folder;
         $filefilters = array("png","gif","jpg","jpeg");
-		$targetfile = $__floorplan_folder."/".$name.".".pathinfo($file["name"],PATHINFO_EXTENSION);
+		$targetfile = $__client_floorplan_folder."/".$name.".".pathinfo($file["name"],PATHINFO_EXTENSION);
         //if file already in floorplan folder, use filename;
 
         while(file_exists($targetfile)){
-            $targetfile=$__floorplan_folder."/".pathinfo($targetfile,PATHINFO_FILENAME)."_.".pathinfo($targetfile,PATHINFO_EXTENSION);
+            $targetfile=$__client_floorplan_folder."/".pathinfo($targetfile,PATHINFO_FILENAME)."_.".pathinfo($targetfile,PATHINFO_EXTENSION);
 
         }
 
@@ -68,6 +68,10 @@
         $uploadsuccess = UploadFiles("floorPlanFile",$targetfile,$filefilters,50000);
 
         if($uploadsuccess->success){
+            //copy file to local folder
+            global $__builder_floorplan_folder;
+            copy($targetfile,$__builder_floorplan_folder);
+
             $sql = "Insert into floorPlans(floorPlanName,floorPlanFile) values(:name,:file);";
             $stmt=$wvdb->prepare($sql);
             $stmt->bindValue(':name',$name,SQLITE3_TEXT);

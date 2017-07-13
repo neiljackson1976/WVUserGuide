@@ -1,4 +1,6 @@
 <?php
+/*
+ *
 $target_dir = "images/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -13,7 +15,6 @@ if(isset($_POST["submit"])) {
         echo "<center>File is not an image.</center>";
         $uploadOk = 0;
     }
-
 // Check if file already exists
 if (file_exists($target_file)) {
     echo "<center>Sorry, file already exists.</center>";
@@ -43,18 +44,68 @@ if ($uploadOk == 0) {
     }
 }
 }
+*/
 ?>
-<center>
-    <form action="TestLocatingImage.php" method="post" enctype="multipart/form-data">
-        Select image to upload:
-        <input type="file" name="fileToUpload" id="fileToUpload" />
-        <input type="submit" value="Upload Image" name="submit" />
-    </form>
-    <?php
 
-    // Check if image file is a actual image or fake image
-    if($uploadOk == 1) {
+<html>
 
-    }
-    ?>
-</center>
+<head>
+    <style>
+        .containerdiv {
+            position: relative;
+            width: 100%;
+            height: 156px;
+            text-align: center;
+        }
+
+
+        .absimg {
+            position: absolute;
+            
+        }
+
+        .imgdiv {
+            display: inline-block;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    
+        
+    
+
+    <div>
+
+        <form action='' method=post>
+            <input type='image' alt=' Finding coordinates of an image' src='images/basementlarge.png'
+                name='foo' style=cursor:crosshair; />
+
+        </form>
+    </div>
+
+                
+                
+    <div class='containerdiv' align='center'>
+
+        <div class="imgdiv">
+            <img src="images/basementlarge.png" border="0" />
+            <?Php
+        if($_POST){
+            $foo_x=$_POST['foo_x'];
+            $foo_y=$_POST['foo_y'];
+            $imagesize = getimagesize("images/basementlarge.png");
+            $x_percent = $foo_x*100/$imagesize[0];
+            $y_percent = $foo_y*100/$imagesize[1];
+            $crosshairssize = getimagesize("images/elementcross@12px.png");
+            $marginleft = round($crosshairssize[0]/2);
+            $margintop = round($crosshairssize[1]/2);
+            echo "<img src='images/elementcross@12px.png' border='0' class='absimg' style='top: ".round($y_percent,PHP_ROUND_HALF_DOWN)."%; left:".round($x_percent,PHP_ROUND_HALF_DOWN)."%; margin-left:-".$marginleft."px; margin-top:-".$margintop."px;'/>";
+
+        }
+            ?>
+            </div>
+    
+        </div>
+</body>
+</html>
