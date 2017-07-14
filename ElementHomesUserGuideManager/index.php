@@ -17,7 +17,7 @@
         </tr>
         <tr>
             <td>Floors</td>
-            <td><a href="AddFloors.php">Add</a></td>
+            <td><a href="AddFloors.html">Add</a></td>
             <td>
                 <a href="EditFloors.php">Edit</a>
             </td>
@@ -32,7 +32,7 @@
         <tr>
             <td>FloorPlans</td>
             <td>
-                <a href="AddFloorPlans.php">Add</a>
+                <a href="AddFloorPlans.html">Add</a>
             </td>
             <td>
                 <a href="EditFloorPlans.php">Edit</a>
@@ -73,6 +73,51 @@
             </td>
             <td>
                 <a href="IndexLocations.php">List</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Component Groups</td>
+            <td>
+                <a href="AddComponentGroup.php">Add</a>
+            </td>
+            <td>
+                <a href="EditComponentGroup.php">Edit</a>
+            </td>
+            <td>
+                <a href="DeleteComponentGroup.php">Add</a>
+            </td>
+            <td>
+                <a href="IndexComponentGroups.php">List</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Components</td>
+            <td>
+                <a href="AddComponent.php">Add</a>
+            </td>
+            <td>
+                <a href="EditComponent.php">Edit</a>
+            </td>
+            <td>
+                <a href="DeleteComponent.php">Add</a>
+            </td>
+            <td>
+                <a href="IndexComponents.php">List</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Documentation Items</td>
+            <td>
+                <a href="AddDocumentationItem.php">Add</a>
+            </td>
+            <td>
+                <a href="EditDocumentationItem.php">Edit</a>
+            </td>
+            <td>
+                <a href="DeleteDocumentationItem.php">Add</a>
+            </td>
+            <td>
+                <a href="IndexDocumentationItems.php">List</a>
             </td>
         </tr>
 

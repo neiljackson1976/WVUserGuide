@@ -13,7 +13,7 @@ $roomid = $_GET['id'];
 </head>
 
 <body>
-    <a href="AddRooms.html">Add New Room</a>
+    <a href="AddRooms.php">Add New Room</a>
     <br />
     <br />
 
