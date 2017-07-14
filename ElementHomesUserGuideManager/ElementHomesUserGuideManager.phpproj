@@ -24,7 +24,9 @@
     <Compile Include="AddFloorPlans.php" />
     <Compile Include="AddFloors.php" />
     <Compile Include="AddImage.php" />
+    <Compile Include="AddLocations.php" />
     <Compile Include="Configure.php" />
+    <Compile Include="DeleteLocation.php" />
     <Compile Include="index.php" />
     <Compile Include="AddRooms.php" />
     <Compile Include="IndexComponentGroups.php" />
@@ -43,8 +45,6 @@
   <ItemGroup>
     <Content Include="AddFloorPlans.html" />
     <Content Include="AddFloors.html" />
-    <Content Include="AddLocations.html" />
-    <Content Include="AddRooms.html" />
     <Content Include="TestPositioning.html" />
   </ItemGroup>
 </Project>

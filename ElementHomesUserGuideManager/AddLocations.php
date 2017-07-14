@@ -7,7 +7,6 @@
         .containerdiv {
             position: relative;
             width: 100%;
-            height: 156px;
             text-align: center;
         }
 
@@ -88,7 +87,7 @@
                         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['flplan_x'])) {
                             $flpln_x=$_POST['flplan_x'];
                             $flpln_y=$_POST['flplan_y'];
-                            $imagesize = getimagesize("images/basementlarge.png");
+                            $imagesize = getimagesize($planfile);
                             $x_percent = $flpln_x*100/$imagesize[0];
                             $y_percent = $flpln_y*100/$imagesize[1];
                             $crosshairssize = getimagesize("images/elementcross@12px.png");
