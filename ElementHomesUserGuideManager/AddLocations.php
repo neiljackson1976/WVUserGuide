@@ -58,7 +58,7 @@
                         global $floorplanarray;
                         while($plan = $floorplanres->fetchArray(SQLITE3_ASSOC)) {
                             $planid = $plan['FloorPlanID'];
-                            $selectedstring=$selectedplan==$planid?"selected=selected":"";
+                            $selectedstring=$selectedplan==$planid?" selected=selected":"";
                             echo "<option value='".$planid."'".$selectedstring.">".$plan['FloorPlanName']."</option>";
                             $floorplanarray[$planid] = $plan['FloorPlanFile'];
                         }
