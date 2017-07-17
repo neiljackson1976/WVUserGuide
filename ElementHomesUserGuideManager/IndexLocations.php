@@ -14,7 +14,6 @@ $locationid = $_GET['ID'];
         .containerdiv {
             position: relative;
             width: 100%;
-            height: 156px;
             text-align: center;
         }
 
@@ -56,10 +55,11 @@ $locationid = $_GET['ID'];
             echo "<td>".$res['LocationID']."</td>";
             echo "<td>".$res['LocationDescription']."</td>";
             echo "<td>";
-            echo "<div class='containerdiv' align='center'>";
+            $floorplanimage = $__builder_floorplan_folder."/".pathinfo($res['FloorPlanFile'],PATHINFO_BASENAME);
+            $floorplanimagesize = getimagesize($floorplanimage);
+            echo "<div class='containerdiv' align='center' style='height: ".$floorplanimagesize[1]."px'>";
 
             echo "<div class='imgdiv'>";
-            $floorplanimage = $__builder_floorplan_folder."/".pathinfo($res['FloorPlanFile'],PATHINFO_BASENAME);
             echo "<img src='".$floorplanimage."' border='0' />";
             $crossimage = $__builder_site_images_folder."/elementcross@12px.png";
             $crossimagesize = getimagesize($crossimage);
@@ -75,7 +75,7 @@ $locationid = $_GET['ID'];
             echo "<td>".$res['LocationX']."</td>";
             echo "<td>".$res['LocationY']."</td>";
 
-            echo "<td><a href=\"edit.php?id=$res[locationID]\">Edit</a> | <a href=\"deletelocation.php?id=$res[locationID]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+            echo "<td><a href='edit.php?id=".$res[LocationID]."'>Edit</a> | <a href='deletelocation.php?id=".$res[LocationID]."' onClick='return confirm('Are you sure you want to delete?')'>Delete</a></td>";
 
             echo "</tr>";
         }
