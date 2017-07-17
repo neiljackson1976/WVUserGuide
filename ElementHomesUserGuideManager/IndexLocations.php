@@ -75,7 +75,7 @@ $locationid = $_GET['ID'];
             echo "<td>".$res['LocationX']."</td>";
             echo "<td>".$res['LocationY']."</td>";
 
-            echo "<td><a href='edit.php?id=".$res[locationID]."'>Edit</a> | <a href='deletelocation.php?id=".$res[locationID]."' onClick='return confirm('Are you sure you want to delete?')'>Delete</a></td>";
+            echo "<td><a href='edit.php?id=".$res[LocationID]."'>Edit</a> | <a href='deletelocation.php?id=".$res[LocationID]."' onClick='return confirm('Are you sure you want to delete?')'>Delete</a></td>";
 
             echo "</tr>";
         }
