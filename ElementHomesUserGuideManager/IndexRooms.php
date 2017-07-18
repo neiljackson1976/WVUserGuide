@@ -3,7 +3,7 @@
 include_once("Configure.php");
 
 global $wvdb;
-$result = $wvdb->query('SELECT * FROM Rooms ORDER BY RoomID;');
+$result = $wvdb->query('SELECT r.RoomID, r.RoomName, f.FloorName, l.LocationDescription FROM Rooms as r inner join Floors as f on r.FloorID = f.FloorID inner join Locations as l on r.LocationID = l.LocationID ORDER BY RoomID;');
 $roomid = $_GET['id'];
 ?>
 

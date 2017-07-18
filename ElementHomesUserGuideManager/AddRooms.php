@@ -15,7 +15,7 @@
         $locationresult = $wvdb->query('SELECT * FROM Locations ORDER BY LocationID;');
         $locations = array();
         while($locres = $locationresult->fetchArray(SQLITE3_ASSOC)) {
-            $locations[$locres['FloorID']] = $locres['FloorName'];
+            $locations[$locres['LocationID']] = $locres['LocationDescription'];
         }
 
 
@@ -24,31 +24,37 @@
         $roomID = "";
         $floorIDErr = "";
         $locationIDErr = "";
+        $submitErr = "";
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            $roomName = test_input($_POST["roomName"]);
+            $floorID = test_input($_POST["floorID"]);
+            $locationID = test_input($_POST["locationID"]);
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['Submit'])) {
-            if (empty($_POST["roomName"])) {
-                $roomNameErr = "Room Name is required";
-            }
-            elseif (empty($_POST["floorID"]) or $_POST["floorID"]==-1){
-                $floorIDErr = "Choose a floor";
-            }
-
-            else {
-                $roomName = test_input($_POST["roomName"]);
-                $floorID = test_input($_POST["floorID"]);
-                $locationID = test_input($_POST["locationID"]);
-
-                $ret=insertRoom($roomName,$floorID,$locationID);
-                if($ret["success"])
-                {
-                    $roomID = $ret["rowid"];
-                    header('Location: IndexRooms.php?id='.$roomid);
-                    die();
+            if (isset($_POST['Submit'])) {
+                if (empty($_POST["roomName"]) or $_POST["roomName"]=="") {
+                    $roomNameErr = "Room Name is required";
                 }
-                else
-                {
-                    $roomNameErr="Unable to create room./n".$ret["error"];
-                    $roomID="";
+                if (empty($_POST["floorID"]) or $_POST["floorID"]==-1){
+                    $floorIDErr = "Choose a floor";
+                }
+                if (empty($_POST["locationID"]) or $_POST["locationID"]==-1){
+                    $locationIDErr = "Choose a location";
+                }
+
+                else {
+            
+                    $ret=insertRoom($roomName,$floorID,$locationID);
+                    if($ret["success"])
+                    {
+                        $roomID = $ret["rowid"];
+                        header('Location: IndexRooms.php?id='.$roomid);
+                        die();
+                    }
+                    else
+                    {
+                        $submitErr="Unable to create room./n".$ret["error"];
+                        $roomID="";
+                    }
                 }
             }
             echo "Room add failed: ".$roomNameErr;
@@ -92,7 +98,10 @@
             <tr>
                 <td>Room Name</td>
                 <td>
-                    <input type="text" name="roomName" />
+                    <input type='text' name='roomName' <?php
+                                                       global $roomName;
+                                                       if(!$roomName=="") echo "value='".$roomName."'";
+                                                       ?>/>
                 </td>
                 <td style="color:red">
                     <?php
@@ -108,8 +117,11 @@
                         <option value='-1'>Select...</option>
                         <?php
                         global $floors;
-                        foreach($floors as $key => $value)
-                            echo "<option value='".$key."'>".$value."</option>";
+                        
+                        foreach($floors as $key => $value){
+                            $selectedstring=($key==$floorID)?" selected='selected'":"";
+                            echo "<option value='".$key."'".$selectedstring.">".$value."</option>";
+                        }
                         ?>
                     </select>
                 </td>
@@ -127,8 +139,10 @@
                         <option value='-1'>Select...</option>
                         <?php
                         global $locations;
-                        foreach($locations as $key => $value)
-                            echo "<option value='".$key."'>".$value."</option>";
+                        foreach($locations as $key => $value){
+                            $selectedstring=($key==$locationID)?" selected='selected'":"";
+                            echo "<option value='".$key."'".$selectedstring.">".$value."</option>";
+                        }
                         ?>
                     </select>
                 </td>
@@ -143,6 +157,12 @@
                 <td></td>
                 <td>
                     <input type="submit" name="Submit" value="Add" />
+                </td>
+                <td style="color:red">
+                    <?php
+                    global $submitErr;
+                    echo $submitErr;
+                    ?>
                 </td>
             </tr>
         </table>
