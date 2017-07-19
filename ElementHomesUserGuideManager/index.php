@@ -120,6 +120,22 @@
                 <a href="IndexDocumentationItems.php">List</a>
             </td>
         </tr>
+        <tr>
+            <td>House Details</td>
+            <td>
+                <a href="AddHouseDetails.php">Add</a>
+            </td>
+            <td>
+                <a href="EditHouseDetails.php">Edit</a>
+            </td>
+            <td>
+                <a href="DeleteHouseDetails.php">Add</a>
+            </td>
+            <td>
+                <a href="IndexHouseDetails.php">List</a>
+            </td>
+        </tr>
+
 
     </table>
 

@@ -23,6 +23,7 @@
     <Compile Include="AddDocumentationItem.php" />
     <Compile Include="AddFloorPlans.php" />
     <Compile Include="AddFloors.php" />
+    <Compile Include="AddHouseDetails.php" />
     <Compile Include="AddImage.php" />
     <Compile Include="AddLocations.php" />
     <Compile Include="Configure.php" />
@@ -34,6 +35,7 @@
     <Compile Include="IndexDocumentationItems.php" />
     <Compile Include="IndexFloorPlans.php" />
     <Compile Include="IndexFloors.php" />
+    <Compile Include="IndexHouseDetails.php" />
     <Compile Include="IndexImages.php" />
     <Compile Include="IndexLocations.php" />
     <Compile Include="IndexRooms.php" />
