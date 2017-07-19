@@ -18,13 +18,93 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Configure.php" />
     <Compile Include="index.php" />
     <Compile Include="Script1.php" />
+    <Compile Include="UpdateDetail.php" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <Content Include="compilerconfig.json.defaults">
+      <SubType>Content</SubType>
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </Content>
+    <Content Include="css\style.css" />
+    <Content Include="css\style.min.css">
+      <SubType>Content</SubType>
+      <DependentUpon>css\style.css</DependentUpon>
+    </Content>
+    <Content Include="css\style.scss" />
+    <Content Include="css\_footer.scss" />
+    <Content Include="css\_general.scss" />
+    <Content Include="css\_header.scss" />
+    <Content Include="css\_hero.scss" />
+    <Content Include="css\_nav.scss" />
+    <Content Include="css\_sections.scss" />
+    <Content Include="css\_variables.scss" />
+    <Content Include="favicon.ico" />
     <Content Include="HTMLPage1.html" />
+    <Content Include="img\hero-bg.jpg" />
+    <Content Include="img\wv_logo.png" />
+    <Content Include="img\wv_logo_lg.png" />
+    <Content Include="img\wv_logo_sm.png" />
+    <Content Include="js\custom.js" />
+    <Content Include="lib\animate-css\animate.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="lib\bootstrap\js\bootstrap.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="lib\bootstrap\js\npm.js" />
+    <Content Include="lib\easing\easing.js" />
+    <Content Include="lib\easing\easing.min.js" />
+    <Content Include="lib\font-awesome\css\font-awesome.css" />
+    <Content Include="lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="lib\jquery\jquery.min.js" />
+    <Content Include="lib\morphext\morphext.js" />
+    <Content Include="lib\morphext\morphext.min.js" />
+    <Content Include="lib\stickyjs\sticky.js" />
+    <Content Include="lib\superfish\hoverIntent.js" />
+    <Content Include="lib\superfish\superfish.js" />
+    <Content Include="lib\superfish\superfish.min.js" />
+    <Content Include="lib\wow\wow.js" />
+    <Content Include="lib\wow\wow.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="img\" />
+    <Folder Include="js\" />
+    <Folder Include="lib\" />
+    <Folder Include="lib\animate-css\" />
+    <Folder Include="lib\bootstrap\" />
+    <Folder Include="lib\bootstrap\css\" />
+    <Folder Include="lib\bootstrap\fonts\" />
+    <Folder Include="lib\bootstrap\js\" />
+    <Folder Include="lib\easing\" />
+    <Folder Include="lib\font-awesome\" />
+    <Folder Include="lib\font-awesome\css\" />
+    <Folder Include="lib\font-awesome\fonts\" />
+    <Folder Include="lib\jquery\" />
+    <Folder Include="lib\morphext\" />
+    <Folder Include="lib\wow\" />
+    <Folder Include="lib\superfish\" />
+    <Folder Include="lib\stickyjs\" />
+    <Folder Include="css\" />
   </ItemGroup>
 </Project>

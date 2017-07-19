@@ -7,7 +7,7 @@ include_once("Configure.php");
 $init = new InitialiseDatabase();
 
 
-$init->KillAllTables();
+//$init->KillAllTables();
 $init->CreateTables();
 
 echo $init->EnumerateDatabase();
@@ -33,6 +33,7 @@ class InitialiseDatabase extends SQLite3{
         $this->DropTable("FloorPlans");
         $this->DropTable("Rooms");
         $this->DropTable("Components");
+        $this->DropTable("HouseDetails");
         $this->DropTable("ComponentGroups");
         $this->DropTable("Locations");
         $this->DropTable("DocumentationItems");
@@ -63,7 +64,7 @@ class InitialiseDatabase extends SQLite3{
 SELECT * FROM sqlite_master WHERE type='table';
 EOF;
 
-        
+
 
         $tablelisthtml = '<h2>Tables In The Database:</h2><ul style="list-style-type:disc">';
 
@@ -88,10 +89,10 @@ EOF;
             }
         }
         $tablelisthtml.='</ul>';
-        
+
         foreach($tablelist as $table)
         {
-            
+
         }
 
         $enumhtml = $tablelisthtml;
@@ -106,6 +107,7 @@ EOF;
         $this->CreateComponentGroups();
         $this->CreateLocations();
         $this->CreateDocumentationItem();
+        $this->CreateHouseDetails();
     }
 
     public function CreateStoredProcs(){
@@ -144,6 +146,15 @@ EOF;
         $this->CreateTable($table,$sql);
 
     }
+
+    private function CreateHouseDetails(){
+        $table = "HouseDetails";
+        $sql = "CREATE TABLE IF NOT EXISTS HouseDetails(HouseDetailID integer PRIMARY KEY, HouseDetailType text, HouseDetailText text);";
+        $sql .= "CREATE UNIQUE INDEX idx_HouseDetailType ON HouseDetails(HouseDetailType);";
+        $this->CreateTable($table,$sql);
+
+    }
+
 
     private function CreateComponentGroups(){
         $table = "ComponentGroups";
