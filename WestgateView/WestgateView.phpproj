@@ -68,6 +68,10 @@
     <Content Include="lib\bootstrap\js\npm.js" />
     <Content Include="lib\easing\easing.js" />
     <Content Include="lib\easing\easing.min.js" />
+    <Content Include="lib\elementfonts\css\elementfonts.css" />
+    <Content Include="lib\elementfonts\css\elementfonts.min.css" />
+    <Content Include="lib\elementfonts\css\elementfonts.scss" />
+    <Content Include="lib\elementfonts\css\variables.scss" />
     <Content Include="lib\font-awesome\css\font-awesome.css" />
     <Content Include="lib\font-awesome\css\font-awesome.min.css" />
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.eot" />
@@ -97,11 +101,14 @@
     <Folder Include="lib\bootstrap\fonts\" />
     <Folder Include="lib\bootstrap\js\" />
     <Folder Include="lib\easing\" />
+    <Folder Include="lib\elementfonts\css\" />
+    <Folder Include="lib\elementfonts\fonts\" />
     <Folder Include="lib\font-awesome\" />
     <Folder Include="lib\font-awesome\css\" />
     <Folder Include="lib\font-awesome\fonts\" />
     <Folder Include="lib\jquery\" />
     <Folder Include="lib\morphext\" />
+    <Folder Include="lib\elementfonts\" />
     <Folder Include="lib\wow\" />
     <Folder Include="lib\superfish\" />
     <Folder Include="lib\stickyjs\" />

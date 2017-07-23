@@ -68,15 +68,15 @@
 
     .homedetail-icon {
         float: left;
-        background: $accent-color;
-        padding: 16px;
+        background: $heading-color;
+        padding: 0px;
         border-radius: 50%;
         transition: 0.5s;
-        border: 1px solid $accent-color;
+        border: 0px solid $accent-color;
 
         i {
-            color: #fff;
-            font-size: 24px;
+            color: $accent-color;
+            font-size: 60px;
         }
     }
 

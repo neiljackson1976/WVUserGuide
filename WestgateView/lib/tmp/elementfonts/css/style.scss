@@ -1,0 +1,89 @@
+@import "variables";
+
+@font-face {
+  font-family: 'elementglyphs';
+  src:  url('#{$icomoon-font-path}/elementglyphs.eot?a3ihqf');
+  src:  url('#{$icomoon-font-path}/elementglyphs.eot?a3ihqf#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/elementglyphs.ttf?a3ihqf') format('truetype'),
+    url('#{$icomoon-font-path}/elementglyphs.woff?a3ihqf') format('woff'),
+    url('#{$icomoon-font-path}/elementglyphs.svg?a3ihqf#elementglyphs') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'elementglyphs' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Kitchen_Vector {
+  &:before {
+    content: $icon-Kitchen_Vector;
+  }
+}
+.icon-NeilAndTim {
+  &:before {
+    content: $icon-NeilAndTim;
+  }
+}
+.icon-FirePrevention {
+  &:before {
+    content: $icon-FirePrevention;
+  }
+}
+.icon-Heating {
+  &:before {
+    content: $icon-Heating;
+  }
+}
+.icon-Internet {
+  &:before {
+    content: $icon-Internet;
+  }
+}
+.icon-Lightbulb {
+  &:before {
+    content: $icon-Lightbulb;
+  }
+}
+.icon-padlock {
+  &:before {
+    content: $icon-padlock;
+  }
+}
+.icon-Paintbrush {
+  &:before {
+    content: $icon-Paintbrush;
+  }
+}
+.icon-plug {
+  &:before {
+    content: $icon-plug;
+  }
+}
+.icon-Water {
+  &:before {
+    content: $icon-Water;
+  }
+}
+

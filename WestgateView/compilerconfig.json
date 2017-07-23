@@ -1,7 +1,10 @@
 ﻿[
-
   {
     "outputFile": "css/style.css",
     "inputFile": "css/style.scss"
+  },
+  {
+    "outputFile": "lib/elementfonts/css/elementfonts.css",
+    "inputFile": "lib/elementfonts/css/elementfonts.scss"
   }
 ]
