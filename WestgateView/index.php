@@ -132,15 +132,36 @@
       Your home Section
     ============================-->
     <?php
+	/*
 	include_once("Configure.php");
 	global $wvdb;
-	$sql = "Select HouseDetailText FROM HouseDetails where HouseDetailType=:dt;";
+	$sql = "Select HouseDetailText FROM HouseDetails where HouseDetailType=";
+	
+	$detailtype = "TelephoneNumber";
+	$telephone_number = $wvdb->querySingle($sql.$detailtype.";");
+	
+	$detailtype = "RouterSSID";
+	$router_SSID = $wvdb->querySingle($sql.$detailtype.";");
+	
+	$detailtype = "RouterAdminURL";
+	$router_AdminURL = $wvdb->querySingle($sql.$detailtype.";");
+	
 	$detailtype = "RouterUser";
-	//$stmt = $wvdb->prepare($sql);
-	//$stmt->bindValue(':dt',$detailtype,SQLITE3_TEXT);
-	$router_user = $wvdb->querySingle("Select HouseDetailText FROM HouseDetails where HouseDetailType=".$detailtype);
-    //$resarray = $res->fetchArray(SQLITE3_ASSOC);
-    //if(!$resarray){} else{$router_user=$resarray["HouseDetailText"];}
+	$router_user = $wvdb->querySingle($sql.$detailtype.";");
+	
+	$detailtype = "RouterPassword";
+	$router_pass = $wvdb->querySingle($sql.$detailtype.";");
+	
+	$detailtype = "IPAddress";
+	$ip_address = $wvdb->querySingle($sql.$detailtype.";");
+
+	$detailtype = "BroadbandUser";
+	$broadband_user = $wvdb->querySingle($sql.$detailtype.";");
+
+	$detailtype = "BroadbandPassword";
+	$broadband_pass = $wvdb->querySingle($sql.$detailtype.";");
+	*/
+
     ?>
 
     <section id="homedetails">
@@ -222,6 +243,8 @@
                 </div>
             </div>
             <div class="row">
+					<div class="col-md-12">
+					
                 <h3>Telephone</h3>
                 <p>There is a single telephone line supplying the property.  It is currently supplied by Zen Internet (but using BT infrastructure).</p>
                 <p>The telephone number for the house is: </p>
@@ -235,9 +258,9 @@
                     You have been provided with a pre-configured modem router.  If you decide to get your own modem router, you will need the following information to set it up:
                 </p>
                 <ul>
-                    <li>IP Address: </li>
-                    <li>Account: </li>
-                    <li>Password: </li>
+                    <li>IP Address: <?php global $ip_address; echo $ip_address; ?><a href="UpdateDetail.php?DetailName=IPAddress">Update IP Address</a></li>
+                    <li>Account: <?php global $broadband_user; echo $broadband_user; ?><a href="UpdateDetail.php?DetailName=BroadbandUser">Update Broadband Username</a></li>
+                    <li>Password: <?php global $broadband_pass; echo $broadband_pass; ?><a href="UpdateDetail.php?DetailName=BroadbandPass">Update Broadband Password</a></li>
 
                 </ul>
                 <h3>Wifi</h3>
@@ -249,9 +272,12 @@
                     First things first:  You have a modem and router which are preconfigured to access the broadband.
                     Your router controls access to the internet for the house.  It looks like this:
                 </p>
-
+					<p>You've got to this site so you obviously know your wifi network ID, but in case this is a printout, it's: <?php global $router_SSID; echo $router_SSID; ?><a href="UpdateDetail.php?DetailName=RouterSSID">Update Wifi Network Name</a></p>
+                
+					<p>Click <a href=<?php global $router_AdminURL; echo "'".$router_AdminURL."'";?>here</a> to configure your router.</p>
+               
                 <p>The username and password for controlling the router are:</p>
-                <p>User:<?php global $router_user; echo $router_user; ?><a href="UpdateDetail.php?DetailName=RouterUser">Update Router Username</a></p>
+                <p>User: <?php global $router_user; echo $router_user; ?><a href="UpdateDetail.php?DetailName=RouterUser">Update Router Username</a></p>
                 <p>Password:</p>
                 <bl />
                 <p>We recommend you change these for your own security.</p>
@@ -261,24 +287,26 @@
                 <p>If you'd rather use wifi, the network id for the wifi router is [] and the password is [].  PLEASE NOTE: these are different to the router login details and should remain so.  We recommend you change this as soon as possible for your own security. Click [here] to configure the router with a new password (you'll need the router password above to do this).</p>
                 <p>That should be enough to get you onto the network with internet access.</p>
                 <bl />
+					<input type="checkbox" class="read-more-state" id="internet-read-more" />
+					<div class="read-more-wrap">
                 <p>Geek zone:  More information for those who want it.</p>
-                <bl />
-                <p>Your broadband reaches the house in the utility cupboard next to the water cylinder.</p>
-                <p>The master socket looks like this:</p>
-                <bl />
-                <bl />
 
-                <p>At this point there is a filter which separates the telephone signal from the broadband.</p>
-                <bl />
-                <p>You can use any ADSL modem to access the broadband.  The login details (already configured on your modem/router) are below:</p>
-                <p>User:</p>
-                <p>Password:</p>
-                <p>If you choose to change provider, these details will be supplied by them and will need to be updated in the modem.</p>
-                <p>The internet is distributed around the house via an 'Ethernet switch' which looks like this:</p>
-                <bl />
-                <p>Should the internet sockets in the house stop working, it is likely to be down to damage to the socket, damage to the cable or a failure in the Ethernet switch.</p>
-                <bl />
+					<label for="interet-read-more" class="read-more-trigger"></label>
+                
+                <p class="read-more-target">Your broadband reaches the house in the utility cupboard next to the water cylinder.</p>
+                <p class="read-more-target">The master socket looks like this:</p>
 
+                <p class="read-more-target">At this point there is a filter which separates the telephone signal from the broadband.</p>
+                
+                <p class="read-more-target">You can use any ADSL modem to access the broadband.  The login details (already configured on your modem/router) are below:</p>
+                <p class="read-more-target">User:</p>
+                <p class="read-more-target">Password:</p>
+                <p class="read-more-target">If you choose to change provider, these details will be supplied by them and will need to be updated in the modem.</p>
+                <p class="read-more-target">The internet is distributed around the house via wires attached to the back of the router.  To add more connections you will need an 'Ethernet switch' connected to the back of the router and then to the additional ports in the utility cupboard.</p>
+                
+                <p class="read-more-target">Should the internet sockets in the house stop working, it is likely to be down to damage to the master socket, to the filter, to the router, to a cable or a failure in the Ethernet switch.</p>
+                </div>
+					</div>
             </div>
         </div>
     </section>
@@ -292,7 +320,21 @@
                     <p class="section-description">How to control the heating in your home</p>
                 </div>
             </div>
+				<div class="row">
+					<div class="col-md-12">
+					
+            			<h3>Boilers</h3>
+						<p>You have two new electric boilers.  They are used solely to heat the building (the water is heated by the immersion cylinder).  They are located in the <a href="">utility cupboard</a>.  Should you need any further information, a manual can be found <a href="">here</a>.  The boilers need to be serviced annually.</p>
+						<h3>Controls</h3>
+						<h3>Thermostats</h3>
+						<p>Your heating system is split into zones, each of which is individually controlled by a thermostat which looks like this.  The thermostats control the heating system via a radio signal meaning they are not reliant on any wiring or wifi connection.  Technical information is available <a href="">here</a>.</p>
+						<h3>Radiators</h3>
+						<p>The radiators are fitted with Thermostatic Radiator Valves to allow you to control the temperature of each room individually.</p>
+						<h3>Bathrooms</h3>
+						<p>You have electric underfloor heating in both bathrooms.  It is controlled via a thermostat which looks like this:. Further details are available in <a href="">the manual</a>.</p>
+					</div>
 
+				</div>
         </div>
     </section>
     <section id="Water">
@@ -304,6 +346,20 @@
                     <p class="section-description">The exciting details about your plumbing</p>
                 </div>
             </div>
+				<div class="row">
+					<div class="col-md-12">
+					
+            			<h3>Water Supply</h3>
+						<p>You have a dedicated double capacity water supply to ensure water pressure is maintained throughout the building.  Should you need to turn off the water supply for any reason, the stopcock can be found in the <a href="">utility cupboard</a>.</p>
+						<h3>Water Meter</h3>
+						<p>Your water meter is located in the pavement to the right of your front door as you leave the building. <a href="">Click here for a location map</a>.</p>
+
+						<h3>Hot Water</h3>
+						<p>Your hot water is heated in a [] litre cylinder located <a href="">here</a>.  This needs to be serviced annually.</p>
+
+					</div>
+
+				</div>
 
         </div>
     </section>       
@@ -317,16 +373,15 @@
                     <p class="section-description">Your electrical installation</p>
                 </div>
             </div>
-
-        </div>
-    </section>
-    <section id="FirePrevention">
-        <div class="container wow fadeInUp">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="section-title">Your Fire Prevention</h3>
-                    <div class="section-title-divider"></div>
-                    <p class="section-description">The fire safety features of your house</p>
+                    <h3>Connection</h3>
+                    <p>Your electricity comes into the building by the front door.  The emergency cut-off is in the <a href="">magnet attached cabinet</a> to the left of the corridor.</p>
+						<h3>Protection</h3>
+                    <p>Your system is controlled by a consumer unit (these have replaced the olden days' fuse boards) in the <a href="">utility cupboard</a>.</p>
+						<p>There is a Residual Current Device (RCD) in the consumer unit for each circuit in your house (except the sprinkler system which needs to be hard wired to ensure operation in a fire). The RCD will cut power to the circuit should there be an overload or a fault.</p>
+						<h3>Lighting</h3>
+                    <p>All spotlights are fire resistant low energy fittings.</p>
                 </div>
             </div>
 
@@ -341,9 +396,23 @@
                     <p class="section-description">The fire safety features of your house</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+						<h3>Smoke Detection</h3>
+						<p>There are smoke detectors throughout the house.  If one of the detectors is triggered, it will sound the alarm throughout the building (including outside on the deck and also in the shop below).  Likewise, any smoke detected in the shop will sound the alarm in your house.  Whilst we understand that this will not always be convenient, this was something that building control wanted and that we believe is sensible given the risk to you should a fire break out below.</p>
+						<h3>Sprinkler System</h3>
+						<p>Your house is fitted with its own independent sprinkler system (as is the shop below).</p>
+						<p>Your system has its own tanks which feed sprinkler heads throughout the building via a pump in <a href="">the basement</a>.</p>
+						<p>The sprinklers are activated by temperature (54 degrees Celcius).  If a fire breaks out, the sprinkler head nearest the fire (NOT the whole house) will release water at a rate of about 49 litres per minute.  This will normally be enough to supress the fire before it spreads.</p>
+						<p>If a sprinkler head is activated, the smoke alarms thoughout the building will sound.</p>
+						<p>Your system was installed by <a href="http://www.firesprinklersdorset.co.uk">Dorset Fire Sprinkler Systems</a> and should be serviced annually.</p>
+						
+					</div>
+				</div>
 
         </div>
     </section>
+
     <section id="Security">
         <div class="container wow fadeInUp">
             <div class="row">
@@ -371,63 +440,6 @@
 
 
      
-
-            <h1>Westgate View User Guide</h1>
-
-            <h2>Internet connectivity</h2>
-
-            
-            <h2>Water</h2>
-            <p>You have a new 32mm supply which should provide more than enough pressure for the whole house.  The stopcock is in the utility cupboard and looks like this:</p>
-            <bl />
-            <p>Your meter is outside under the pavement here:</p>
-            <bl />
-            <bl />
-
-
-            <p>Read more:</p>
-            <p>Here is a layout diagram for your plumbing system:</p>
-            <bl />
-            <bl />
-
-
-            <h2>Fire protection</h2>
-            <p>You have a modern sprinkler system in your house.  This was installed by [Dorset Fire].  The tanks in the cellar provide the water for the sprinklers which are fed by the pump down there.  These need to be inspected and maintained on an annual basis to ensure operability.</p>
-            <bl />
-            <p>Read more:</p>
-            <p>The system is full of water at high pressure.  The sprinkler heads (see below) are kept in place by a layer of solder which melts at [54 oC].  In the event of a fire, the solder will melt, releasing the water. The alarms will sound at this point.</p>
-            <p>The fire alarms can be triggered by any of the following:</p>
-            <li>the smoke detectors,</li>
-            <li>the sprinkler system or </li>
-            <li>the fire protection system in the shop below.</li>
-            <bl />
-            <p>If the alarms sound and you are 100% sure that there is no fire in the house, you should still beware of the possibility of a fire in the shop.</p>
-            <bl />
-
-            <b2>Hot Water</b2>
-            <p>You have an electric hot water system.  The boilers are in the utility cupboard and look like this:</p>
-
-            <b2>Heating</b2>
-            <p>Your heating controllers look like this:</p>
-            <p>Here is a link to the instructions.</p>
-            <p>To adjust when the heating comes on, use these timers in the utility cupboard:</p>
-            <bl />
-            <p>The thermostat looks like this:</p>
-            <bl />
-            <p>To adjust each room individually, use the valves on each radiator.</p>
-            <bl />
-
-            <h2>Telephones</h2>
-            <p>The telephone number for the house is:</p>
-            <bl />
-
-            <h2>Intercom</h2>
-            <p>You have a video intercom system for the house.  This will allow you to see and speak to visitors from these locations in the house.</p>
-            <bl />
-
-            <h2>Electrical</h2>
-            <p>The house has been completely rewired with new fixtures, fittings and safety equipment.</p>
-            <p>All downlights are low energy fire resistant fittings</p>
 
             <!--==========================
               Footer
