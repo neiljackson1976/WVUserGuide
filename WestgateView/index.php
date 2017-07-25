@@ -131,6 +131,18 @@
     <!--==========================
       Your home Section
     ============================-->
+    <?php
+	include_once("Configure.php");
+	global $wvdb;
+	$sql = "Select HouseDetailText FROM HouseDetails where HouseDetailType=:dt;";
+	$detailtype = "RouterUser";
+	//$stmt = $wvdb->prepare($sql);
+	//$stmt->bindValue(':dt',$detailtype,SQLITE3_TEXT);
+	$router_user = $wvdb->querySingle("Select HouseDetailText FROM HouseDetails where HouseDetailType=".$detailtype);
+    //$resarray = $res->fetchArray(SQLITE3_ASSOC);
+    //if(!$resarray){} else{$router_user=$resarray["HouseDetailText"];}
+    ?>
+
     <section id="homedetails">
         <div class="container wow fadeInUp">
             <div class="row">
@@ -239,7 +251,7 @@
                 </p>
 
                 <p>The username and password for controlling the router are:</p>
-                <p>User:<?php global $router_user; echo $router_user; ?><a href="UpdateDetail.php?DetailName=RouterUser">Update Router Username</a>/></p>
+                <p>User:<?php global $router_user; echo $router_user; ?><a href="UpdateDetail.php?DetailName=RouterUser">Update Router Username</a></p>
                 <p>Password:</p>
                 <bl />
                 <p>We recommend you change these for your own security.</p>
@@ -358,17 +370,7 @@
     </section>
 
 
-            <?php
-	include_once("Configure.php");
-	global $wvdb;
-	$sql = "Select HouseDetailText FROM HouseDetails where HouseDetailType=:dt;";
-	$detailtype = "RouterUser";
-	$stmt = $wvdb->prepare($sql);
-	$stmt->bindValue(':dt',$detailtype,SQLITE3_TEXT);
-	$res = $stmt->execute();
-    $resarray = $res->fetchArray(SQLITE3_ASSOC);
-    if(!$resarray){} else{$router_user=$resarray["HouseDetailText"];}
-    ?>
+     
 
             <h1>Westgate View User Guide</h1>
 
