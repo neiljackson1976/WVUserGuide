@@ -45,6 +45,7 @@
     <Content Include="favicon.ico" />
     <Content Include="HTMLPage1.html" />
     <Content Include="img\hero-bg.jpg" />
+    <Content Include="img\LocationMap.png" />
     <Content Include="img\wv_logo.png" />
     <Content Include="img\wv_logo_lg.png" />
     <Content Include="img\wv_logo_sm.png" />

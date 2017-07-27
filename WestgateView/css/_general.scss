@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* read more functionality */
-read-more-state {
+.read-more-state {
   display: none;
 }
 
@@ -81,13 +81,19 @@ read-more-state {
   max-height: 0;
   font-size: 0;
   transition: .25s ease;
+  margin: 0;
 }
 
 .read-more-state:checked ~ .read-more-wrap .read-more-target {
   opacity: 1;
   font-size: inherit;
   max-height: 999em;
+  margin: 0px 0px 30px 0px;  
+  
 }
+
+
+
 
 .read-more-state ~ .read-more-trigger:before {
   content: 'Show more';
